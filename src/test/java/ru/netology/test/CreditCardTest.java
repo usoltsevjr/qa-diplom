@@ -87,7 +87,7 @@ public class CreditCardTest {
 
         @Test
         void shouldNotSubmitIfCardNotFull() {
-            val number = getInvalidCardWith15Nubmers();
+            val number = getInvalidCardWith15Numbers();
             paymentPage.fillForm(number, month, year, owner, cvv);
             paymentPage.wrongFormatMessage();
         }
@@ -237,7 +237,7 @@ public class CreditCardTest {
         private final DataHelper.Owner owner = getValidOwner();
 
         @Test
-        void shouldSubmitIfСVVIsEmpty() {
+        void shouldNotSubmitIfCVVEmpty() {
             val cvv = getEmptyCVV();
             paymentPage.fillForm(number, month, year, owner, cvv);
             paymentPage.shouldFillMessage();
