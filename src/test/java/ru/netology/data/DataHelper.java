@@ -141,18 +141,18 @@ public class DataHelper {
 
         @Value
         public static class CardInformationForAPI {
-            String holder;
-            String month;
             String number;
+            String month;
             String year;
+            String holder;
             String cvv;
         }
 
-        public static CardInformationForApi getValidApprovedCardForApi() {
-            return new CardInformationForApi("Petrov Alexandr", "10", "4444444444444441", "22", "101");
+        public static CardInformationForAPI getApprovedCardForApi() {
+            return new CardInformationForAPI("4444444444444441","10", "22", "Petrov Alexandr", "101");
         }
 
-        public static CardInformationForApi getValidDeclinedCardForApi() {
-            return new CardInformationForApi("Petrov Alexandr", "10", "4444444444444442", "22", "101");
+        public static CardInformationForAPI getDeclinedCardForApi() {
+            return new CardInformationForAPI("4444444444444442","10", "22", "Petrov Alexandr", "101");
         }
 }

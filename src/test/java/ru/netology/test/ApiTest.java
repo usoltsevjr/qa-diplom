@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
-import static ru.netology.data.DataHelper.getValidApprovedCardForApi;
-import static ru.netology.data.DataHelper.getValidDeclinedCardForApi;
+import static ru.netology.data.DataHelper.*;
 
 
 public class ApiTest {
@@ -24,7 +23,7 @@ public class ApiTest {
 
     @Test
     void shouldGiveResponseForValidApprovedDebitCard() {
-        val cardInformationForApi = getValidApprovedCardForApi();
+        val cardInformationForApi = getApprovedCardForApi();
         val response = given()
                 .spec(requestSpec)
                 .body(cardInformationForApi)
@@ -40,7 +39,7 @@ public class ApiTest {
 
     @Test
     void shouldGiveResponseForValidDeclinedDebitCard() {
-        val cardInformationForApi = getValidDeclinedCardForApi();
+        val cardInformationForApi = getDeclinedCardForApi();
         val response = given()
                 .spec(requestSpec)
                 .body(cardInformationForApi)
@@ -56,7 +55,7 @@ public class ApiTest {
 
     @Test
     void shouldGiveResponseForValidApprovedCreditCard() {
-        val cardInformationForApi = getValidApprovedCardForApi();
+        val cardInformationForApi = getApprovedCardForApi();
         val response = given()
                 .spec(requestSpec)
                 .body(cardInformationForApi)
@@ -72,7 +71,7 @@ public class ApiTest {
 
     @Test
     void shouldGiveResponseForValidDeclinedCreditCard() {
-        val cardInformationForApi = getValidDeclinedCardForApi();
+        val cardInformationForApi = getDeclinedCardForApi();
         val response = given()
                 .spec(requestSpec)
                 .body(cardInformationForApi)
