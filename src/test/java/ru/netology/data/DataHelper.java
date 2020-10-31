@@ -149,10 +149,10 @@ public class DataHelper {
         }
 
         public static CardInformationForApi getValidApprovedCardForApi() {
-            return new CardInformationForApi("Ivanov Petr", "10", "4444444444444441", "22", "101");
+            return new CardInformationForApi("Petrov Alexandr", "10", "4444444444444441", "22", "101");
         }
 
         public static CardInformationForApi getValidDeclinedCardForApi() {
-            return new CardInformationForApi("Ivanov Petr", "10", "4444444444444442", "22", "101");
+            return new CardInformationForApi("Petrov Alexandr", "10", "4444444444444442", "22", "101");
         }
 }
