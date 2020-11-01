@@ -6,153 +6,115 @@ import lombok.Value;
 @NoArgsConstructor
 public class DataHelper {
 
-        @Value
-        public static class Number {
-            String Number;
+    @Value
+    public static class CardInformation {
+        String number;
+        String month;
+        String year;
+        String holder;
+        String cvv;
+    }
+
+        public static CardInformation getValidApprovedCard() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "Antonov Anton", "101");
         }
 
-        public static Number getValidApprovedCard() {
-            return new Number("4444444444444441");
+        public static CardInformation getValidDeclinedCard() {
+            return new CardInformation("4444 4444 4444 4442", "10", "22", "Antonov Anton", "101");
         }
 
-        public static Number getValidDeclinedCard() {
-            return new Number("4444444444444442");
+        public static CardInformation getEmptyCard() {
+            return new CardInformation("", "10", "22", "Antonov Anton", "101");
         }
 
-        public static Number getEmptyCard() {
-            return new Number("");
+        public static CardInformation getInvalidCardWith15Numbers() {
+            return new CardInformation("4444 4444 4444 444", "10", "22", "Antonov Anton", "101");
         }
 
-        public static Number getInvalidCardWith15Numbers() {
-            return new Number("444444444444444");
+        public static CardInformation getAnotherBankCard() {
+            return new CardInformation("2904 4444 4444 4444", "10", "22", "Antonov Anton", "101");
         }
 
-        public static Number getAnotherBankCard() {
-            return new Number("2904444444444444");
+
+        public static CardInformation getEmptyMonth() {
+            return new CardInformation("4444 4444 4444 4441", "", "22", "Antonov Anton", "101");
         }
 
-        @Value
-        public static class Month {
-            String Month;
+        public static CardInformation getInvalidFormatMonthIsZero() {
+            return new CardInformation("4444 4444 4444 4441", "00", "22", "Antonov Anton", "101");
         }
 
-        public static Month getValidMonth() {
-            return new Month("10");
+        public static CardInformation getInvalidFormatMonthIsIncorrect() {
+            return new CardInformation("4444 4444 4444 4441", "15", "22", "Antonov Anton", "101");
         }
 
-        public static Month getEmptyMonth() {
-            return new Month("");
+        public static CardInformation getInvalidFormatMonthIsOneNumber() {
+            return new CardInformation("4444 4444 4444 4441", "7", "22", "Antonov Anton", "101");
         }
 
-        public static Month getInvalidFormatMonthIsZero() {
-            return new Month("00");
+        public static CardInformation getEmptyYear() {
+            return new CardInformation("4444 4444 4444 4441", "10", "", "Antonov Anton", "101");
         }
 
-        public static Month getInvalidFormatMonthIsIncorrect() {
-            return new Month("15");
+        public static CardInformation getEarlyYear() {
+            return new CardInformation("4444 4444 4444 4441", "10", "18", "Antonov Anton", "101");
         }
 
-        public static Month getInvalidFormatMonthIsOneNumber() {
-            return new Month("7");
+        public static CardInformation getFutureYear() {
+            return new CardInformation("4444 4444 4444 4441", "10", "30", "Antonov Anton", "101");
         }
 
-        @Value
-        public static class Year {
-            String Year;
+
+        public static CardInformation getEmptyOwner() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "", "101");
         }
 
-        public static Year getValidYear() {
-            return new Year("22");
+        public static CardInformation getInvalidOwnerUsingOneWord() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "Antonov", "101");
         }
 
-        public static Year getEmptyYear() {
-            return new Year("");
+        public static CardInformation getInvalidOwnerWithThreeWords() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "Antonov Anton Anton", "101");
         }
 
-        public static Year getEarlyYear() {
-            return new Year("18");
+        public static CardInformation getInvalidOwnerWithLowerCase() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "antonov anton", "101");
         }
 
-        public static Year getFutureYear() {
-            return new Year("30");
+        public static CardInformation getInvalidOwnerWithUpperCase() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "ANTONOV ANTON", "101");
         }
 
-        @Value
-        public static class Owner {
-            String Owner;
+        public static CardInformation getInvalidOwnerRu(){return new CardInformation("4444 4444 4444 4441", "10", "22", "Антонов Антон", "101");
         }
 
-        public static Owner getValidOwner() {
-            return new Owner("Antonov Anton");
+        public static CardInformation getInvalidOwnerWithNumbers() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "124575", "101");
         }
 
-        public static Owner getEmptyOwner() {
-            return new Owner("");
+        public static CardInformation getInvalidOwnerWithSymbols() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "±!@$%^", "101");
         }
 
-        public static Owner getInvalidOwnerUsingOneWord() {
-            return new Owner("Vladimir");
+        public static CardInformation getEmptyCVV() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "Antonov Anton", "");
         }
 
-        public static Owner getInvalidOwnerWithThreeWords() {
-            return new Owner("Antonov Anton Anton");
+        public static CardInformation getInvalidCVVWith1Number() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "Antonov Anton", "1");
         }
 
-        public static Owner getInvalidOwnerWithLowerCase() {
-            return new Owner("antonov anton");
+        public static CardInformation getInvalidCVVWith2Numbers() {
+            return new CardInformation("4444 4444 4444 4441", "10", "22", "Antonov Anton", "11");
         }
 
-        public static Owner getInvalidOwnerWithUpperCase() {
-            return new Owner("ANTONOV ANTON");
+
+
+        public static CardInformation getApprovedCard() {
+            return new CardInformation("4444 4444 4444 4441","10", "22", "Petrov Alexandr", "101");
         }
 
-        public static Owner getInvalidOwnerRu() {
-            return new Owner("Антонов Антон");
-        }
-
-        public static Owner getInvalidOwnerWithNumbers() {
-            return new Owner("12468");
-        }
-
-        public static Owner getInvalidOwnerWithSymbols() {
-            return new Owner("~@#$%");
-        }
-
-        @Value
-        public static class Cvv {
-            String Cvv;
-        }
-
-        public static Cvv getValidCVV() {
-            return new Cvv("101");
-        }
-
-        public static Cvv getEmptyCVV() {
-            return new Cvv("");
-        }
-
-        public static Cvv getInvalidCVVWith1Number() {
-            return new Cvv("1");
-        }
-
-        public static Cvv getInvalidCVVWith2Numbers() {
-            return new Cvv("11");
-        }
-
-        @Value
-        public static class CardInformationForAPI {
-            String number;
-            String month;
-            String year;
-            String holder;
-            String cvv;
-        }
-
-        public static CardInformationForAPI getApprovedCardForApi() {
-            return new CardInformationForAPI("4444444444444441","10", "22", "Petrov Alexandr", "101");
-        }
-
-        public static CardInformationForAPI getDeclinedCardForApi() {
-            return new CardInformationForAPI("4444444444444442","10", "22", "Petrov Alexandr", "101");
+        public static CardInformation getDeclinedCard() {
+            return new CardInformation("4444 4444 4444 4442","10", "22", "Petrov Alexandr", "101");
         }
 }

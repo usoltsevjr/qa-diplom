@@ -41,17 +41,10 @@ public class DebitCardTest {
     }
 
 
-    @Nested
-    public class FirstTests {
-        private final DataHelper.Month month = getValidMonth();
-        private final DataHelper.Year year = getValidYear();
-        private final DataHelper.Owner owner = getValidOwner();
-        private final DataHelper.Cvv cvv = getValidCVV();
-
         @Test
         public void shouldSubmitIfApprovedCard() {
-            val number = getValidApprovedCard();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getValidApprovedCard();
+            paymentPage.fillForm(info);
             paymentPage.successMessage();
             val paymentId = getPaymentId();
             val expectedAmount = "4500000";
@@ -64,200 +57,161 @@ public class DebitCardTest {
 
         @Test
         void shouldNotSubmitIfDeclinedCard() {
-            val number = getValidDeclinedCard();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getValidDeclinedCard();
+            paymentPage.fillForm(info);
             paymentPage.failMessage();
             val paymentId = getPaymentId();
             val expectedStatus = "DECLINED";
             val actualStatus = getStatusForPaymentWithDebitCard(paymentId);
             assertEquals(expectedStatus, actualStatus);
         }
-    }
 
-    @Nested
-    public class FieldNumberTests {
-        private final DataHelper.Month month = getValidMonth();
-        private final DataHelper.Year year = getValidYear();
-        private final DataHelper.Owner owner = getValidOwner();
-        private final DataHelper.Cvv cvv = getValidCVV();
 
         @Test
         void shouldNotSubmitIfFieldCardEmpty() {
-            val number = getEmptyCard();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getEmptyCard();
+            paymentPage.fillForm(info);
             paymentPage.shouldFillMessage();
         }
 
         @Test
         void shouldNotSubmitIfCardNotFull() {
-            val number = getInvalidCardWith15Numbers();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidCardWith15Numbers();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
 
         @Test
         void shouldNotSubmitIfAnotherBankCard() {
-            val number = getAnotherBankCard();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getAnotherBankCard();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
-    }
 
-    @Nested
-    public class FieldMonthTests {
-        private final DataHelper.Number number = getValidApprovedCard();
-        private final DataHelper.Year year = getValidYear();
-        private final DataHelper.Owner owner = getValidOwner();
-        private final DataHelper.Cvv cvv = getValidCVV();
 
         @Test
         void shouldNotSubmitIfEmptyMonth() {
-            val month = getEmptyMonth();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getEmptyMonth();
+            paymentPage.fillForm(info);
             paymentPage.shouldFillMessage();
         }
 
         @Test
         void shouldNotSubmitIfMonthIsZero() {
-            val month = getInvalidFormatMonthIsZero();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidFormatMonthIsZero();
+            paymentPage.fillForm(info);
             paymentPage.wrongTermMessage();
         }
 
         @Test
         void shouldNotSubmitIfMonth1Number() {
-            val month = getInvalidFormatMonthIsOneNumber();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidFormatMonthIsOneNumber();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
 
         @Test
         void shouldNotSubmitIfMonthIncorrect() {
-            val month = getInvalidFormatMonthIsIncorrect();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidFormatMonthIsIncorrect();
+            paymentPage.fillForm(info);
             paymentPage.wrongTermMessage();
         }
-    }
-
-    @Nested
-    public class FieldYearTests {
-        private final DataHelper.Number number = getValidApprovedCard();
-        private final DataHelper.Month month = getValidMonth();
-        private final DataHelper.Owner owner = getValidOwner();
-        private final DataHelper.Cvv cvv = getValidCVV();
 
         @Test
         void shouldNotSubmitIfYearEmpty() {
-            val year = getEmptyYear();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getEmptyYear();
+            paymentPage.fillForm(info);
             paymentPage.shouldFillMessage();
         }
 
         @Test
         void shouldNotSubmitIfYearEarly() {
-            val year = getEarlyYear();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getEarlyYear();
+            paymentPage.fillForm(info);
             paymentPage.cardExpiredMessage();
         }
 
         @Test
         void shouldNotSubmitIfYearFuture() {
-            val year = getFutureYear();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getFutureYear();
+            paymentPage.fillForm(info);
             paymentPage.wrongTermMessage();
         }
-    }
-
-    @Nested
-    public class FieldOwnerTests {
-        private final DataHelper.Number number = getValidApprovedCard();
-        private final DataHelper.Month month = getValidMonth();
-        private final DataHelper.Year year = getValidYear();
-        private final DataHelper.Cvv cvv = getValidCVV();
 
         @Test
         void shouldNotSubmitWhenOwnerEmpty() {
-            val owner = getEmptyOwner();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getEmptyOwner();
+            paymentPage.fillForm(info);
             paymentPage.shouldFillMessage();
         }
 
         @Test
         void shouldNotSubmitIfOwnerUsingOneWord() {
-            val owner = getInvalidOwnerUsingOneWord();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidOwnerUsingOneWord();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
 
         @Test
         void shouldNotSubmitIf3Words() {
-            val owner = getInvalidOwnerWithThreeWords();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidOwnerWithThreeWords();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
 
         @Test
         void shouldNotSubmitIfOwnerUsingLowerCase() {
-            val owner = getInvalidOwnerWithLowerCase();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidOwnerWithLowerCase();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
 
         @Test
         void shouldNotSubmitIfOwnerUsingUpperCase() {
-            val owner = getInvalidOwnerWithUpperCase();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidOwnerWithUpperCase();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
 
         @Test
         void shouldNotSubmitIfOwnerRu() {
-            val owner = getInvalidOwnerRu();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidOwnerRu();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
 
         @Test
         void shouldNotSubmitOwnersWithNumbers() {
-            val owner = getInvalidOwnerWithNumbers();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidOwnerWithNumbers();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
 
         @Test
         void shouldNotSubmitOwnersWithSymbols() {
-            val owner = getInvalidOwnerWithSymbols();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidOwnerWithSymbols();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
-    }
-
-    @Nested
-    public class FieldCVVTests {
-        private final DataHelper.Number number = getValidApprovedCard();
-        private final DataHelper.Month month = getValidMonth();
-        private final DataHelper.Year year = getValidYear();
-        private final DataHelper.Owner owner = getValidOwner();
 
         @Test
         void shouldSubmitIfСVVIsEmpty() {
-            val cvv = getEmptyCVV();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getEmptyCVV();
+            paymentPage.fillForm(info);
             paymentPage.shouldFillMessage();
         }
 
         @Test
         void shouldNotSubmitIfCVVOneNumber() {
-            val cvv = getInvalidCVVWith1Number();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidCVVWith1Number();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
 
         @Test
         void shouldNotSubmitIfCVVTwoNumbers() {
-            val cvv = getInvalidCVVWith2Numbers();
-            paymentPage.fillForm(number, month, year, owner, cvv);
+            val info = getInvalidCVVWith2Numbers();
+            paymentPage.fillForm(info);
             paymentPage.wrongFormatMessage();
         }
-    }
 }

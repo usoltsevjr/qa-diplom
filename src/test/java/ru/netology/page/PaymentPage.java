@@ -26,36 +26,36 @@ public class PaymentPage {
     private final SelenideElement cardExpired = $(byText("Истёк срок действия карты"));
     private final SelenideElement fieldRequired = $(byText("Поле обязательно для заполнения"));
 
-    public void fillForm(DataHelper.Number number, DataHelper.Month Month, DataHelper.Year Year, DataHelper.Owner Owner, DataHelper.Cvv Cvv) {
-        numberField.setValue(number.getNumber());
-        monthField.setValue(Month.getMonth());
-        yearField.setValue(Year.getYear());
-        ownerField.setValue(Owner.getOwner());
-        cvvField.setValue(Cvv.getCvv());
+    public void fillForm(DataHelper.CardInformation info) {
+        numberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvv());
         continueButton.click();
     }
 
     public void successMessage() {
-        successNotification.waitUntil(Condition.visible, 10000);
+        successNotification.waitUntil(Condition.visible, 15000);
     }
 
     public void failMessage() {
-        failNotification.waitUntil(Condition.visible, 10000);
+        failNotification.waitUntil(Condition.visible, 15000);
     }
 
     public void wrongFormatMessage() {
-        wrongFormat.waitUntil(Condition.visible, 10000);
+        wrongFormat.waitUntil(Condition.visible, 15000);
     }
 
     public void wrongTermMessage() {
-        wrongTerm.waitUntil(Condition.visible, 10000);
+        wrongTerm.waitUntil(Condition.visible, 15000);
     }
 
     public void cardExpiredMessage() {
-        cardExpired.waitUntil(Condition.visible, 10000);
+        cardExpired.waitUntil(Condition.visible, 15000);
     }
 
     public void shouldFillMessage() {
-        fieldRequired.waitUntil(Condition.visible, 10000);
+        fieldRequired.waitUntil(Condition.visible, 15000);
     }
 }
