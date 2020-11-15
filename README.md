@@ -4,8 +4,8 @@
 
 ## Документация
 - [План автоматизации тестирования](https://github.com/usoltsevjr/qa-diplom/blob/master/Plan.md)
-- [Отчет по итогам тестирования]
-- [Отчет по итогам автоматизации]
+- [Отчет по итогам тестирования](https://github.com/usoltsevjr/qa-diplom/blob/master/documents/Report.md)
+- [Отчет по итогам автоматизации](https://github.com/usoltsevjr/qa-diplom/blob/master/documents/Summary.md)
 
 ## Перед началом работы
 *Необходимо, чтобы были уставновлены:*
